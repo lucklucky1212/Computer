@@ -1,0 +1,50 @@
+#include<stdio.h>
+#include<string.h>
+
+void main() {
+    char source[100], char_stuff[200], char_destuff[200];
+    int i=0,j=0,k=0;
+
+    printf("Enter plain text: ");
+    scanf("%s", source);
+
+    char_stuff[0]='d'; char_stuff[1]='l'; char_stuff[2]='e'; char_stuff[3]='s'; char_stuff[4]='t'; char_stuff[5]='x';
+    j=6;
+
+    for(k=0; k<strlen(source);) {
+        if(source[k]=='d' && source[k+1]=='l' && source[k+2]=='e') {
+            char_stuff[j++]='d';
+            char_stuff[j++]='l';
+            char_stuff[j++]='e';
+            char_stuff[j++]='d';
+            char_stuff[j++]='l';
+            char_stuff[j++]='e';
+            k+=3;
+        } else {
+            char_stuff[j++] = source[k++];
+        }
+    }
+
+    char_stuff[j++]='d'; char_stuff[j++]='l'; char_stuff[j++]='e';
+    char_stuff[j++]='s'; char_stuff[j++]='t'; char_stuff[j++]='x';
+    char_stuff[j]=0;
+
+    printf("After character stuffing: ");
+    puts(char_stuff);
+
+    j=0;
+    for(i=6; i<(strlen(char_stuff)-6); i++) {
+        if(char_stuff[i]=='d' && char_stuff[i+1]=='l' && char_stuff[i+2]=='e') {
+            char_destuff[j++]='d';
+            char_destuff[j++]='l';
+            char_destuff[j++]='e';
+            i+=5;
+        } else {
+            char_destuff[j++]=char_stuff[i];
+        }
+    }
+
+    char_destuff[j]=0;
+    printf("\nAfter character de-stuffing: ");
+    puts(char_destuff);
+}

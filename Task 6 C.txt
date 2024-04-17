@@ -1,0 +1,50 @@
+#include<stdio.h>
+#include<string.h>
+void main()
+{
+    int i,j,x,y,n,d,delay=1000;
+    int edge[50][50],c[50],cost[50][50];
+    char ch;
+    printf("\nEnter the No.of nodes in graph: ");
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+    {
+        for(j=i;j<n;j++)
+        {
+            fflush(stdin);
+            printf("\nIs there are any edge from %d to %d? ",i+1,j+1);
+            
+            scanf("%d",&d);
+            if(d)
+            {
+                edge[i][j]=1;
+
+            }
+            else
+            {
+                edge[i][j]=0;
+
+                
+            }
+        }
+    }
+    
+    printf("\nWhich Routing table do u want to find the cost of which destination? ");
+    scanf("%d%d",&x,&y);
+    for(i=1;i<=n;i++)
+    {
+        if((edge[i][x-1])==1||(edge[x-1][i])==1)
+        {
+            printf("\nEnter the cost of %d node to its neighbour %d:",x,i+1);
+            scanf("%d",&c[i]);
+            printf("\nEnter the Routing table entry to %d to %d: ",i+1,y);
+            scanf("%d",&cost[i][y-1]);
+            if(delay>(c[i]+cost[i][y-1]))
+            {
+            d=i+1;
+            delay=c[i]+cost[i][y-1];
+            }
+        }
+    }
+    printf("\nEstimated cost from node %d to %d is %d via the node is %d",x,j,delay,d);
+}
