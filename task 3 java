@@ -1,0 +1,61 @@
+import java.util.Scanner;
+
+public class DynamicBitStuffing {
+    public static String bitStuff(String data) {
+        StringBuilder sb = new StringBuilder();
+        int count = 0;
+
+        for (char bit : data.toCharArray()) {
+            if (bit == '1') {
+                count++;
+                sb.append(bit);
+            } else {
+                count = 0;
+                sb.append(bit);
+            }
+
+            if (count == 5) {
+                sb.append('0'); 
+                count = 0;
+            }
+        }
+
+        return sb.toString();
+    }
+
+    public static String bitUnstuff(String data) {
+        StringBuilder unstuffedData = new StringBuilder();
+        int count = 0;
+
+        for (char bit : data.toCharArray()) {
+            if (bit == '1') {
+                count++;
+                unstuffedData.append(bit);
+            } else {
+                count = 0;
+                unstuffedData.append(bit);
+            }
+
+            if (count == 5) {
+                count = 0;
+            }
+        }
+
+        return unstuffedData.toString();
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter data: ");
+        String data = scanner.nextLine();
+
+        String stuffedData = bitStuff(data);
+        System.out.println("Stuffed Data: " + stuffedData);
+
+        String unstuffedData = bitUnstuff(stuffedData);
+        System.out.println("Unstuffed Data: " + unstuffedData);
+
+        scanner.close();
+    }
+}
